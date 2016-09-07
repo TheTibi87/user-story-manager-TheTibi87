@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<hmtl>
+<head>
+    <title>User story</title>
+    <meta charset='utf-8'/>
+</head>
+<body>
+    <h1>User story manager - Edit story</h1>
+    <form method="get" action="/story/<story_id>">
+        <label>Story title</label>
+        <p><textarea id="story_title" name="story_title" type="text" size='78'>{{queried_story.story_title}}</textarea></p>
+        <label>User Story</label>
+        <p><textarea id="user_story" name="user_story" cols="75" rows="10">{{queried_story.user_story}}</textarea></p>
+        <label>Acceptance Criteria</label>
+        <p><textarea id="acceptance_criteria" name="acceptance_criteria" cols="75" rows="10" style="text-align:left;">
+        {{queried_story.acceptance_criteria}}</textarea></p>
+        <label>Business Value</label>
+        <p><input id="business_value" name="business_value" type="number" step="100" min="100" max="1500"
+        value='{{queried_story.business_value}}'></input></p>
+        <label>Estimation (h)</label>
+        <p><input id="estimation" name="estimation" type="number" step="0.5" min="0.5" max="40"
+        value='{{queried_story.estimation}}'></input></p>
+        <label>Status</label>
+        <p><select name="status">
+            <option value="Planning" {{ "selected" if queried_story.status == "Planning" else ""}}>Planning</option>
+            <option value="In Progress" {{ "selected" if queried_story.status == "In Progress" else ""}}>In Progress</option>
+            <option value="To Do" {{ "selected" if queried_story.status == "To Do" else ""}}>To Do</option>
+            <option value="Review" {{ "selected" if queried_story.status == "Review" else ""}}>Review</option>
+            <option value="Done" {{ "selected" if queried_story.status == "Done" else ""}}>Done</option>
+        </select></p>
+        <p><a href="{{url_for('update', story_id=queried_story.id)}}">
+        <button id="update" name="update" type="submit" style="font-size:100%;"> Update</a href> </button></p>
+    </form>
+</body>
+</html>
